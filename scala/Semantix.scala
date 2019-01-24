@@ -17,14 +17,19 @@ object  Semantix {
 
     var julho_404_erro = julho.filter(line => line.contains("404")).cache()
     var agosto_404_erro = agosto.filter(line => line.contains("404")).cache()
+    // Hosts unicos
     hostsunicos(julho,"Julho")
     hostsunicos(agosto,"Agosto")
+    // total 404
     total404(julho_404_erro,"julho")
     total404(agosto_404_erro,"agosto")
+    // Top 5 URL que geram 404
     urls5top(julho_404_erro,"Julho")
     urls5top(agosto_404_erro,"agosto")
+    // 404 Error por dia
     pordia404(julho_404_erro,"Julho")
     pordia404(agosto_404_erro,"agosto")
+    // Byte Counter
     println(SizeEstimator.estimate(julho))
     println(SizeEstimator.estimate(agosto))
     sc.stop()
