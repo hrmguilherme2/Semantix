@@ -30,7 +30,7 @@ val counts = textFile.flatMap( line => line . split ( " " ))
            .reduceByKey( _ + _ )
 .counts.saveAsTextFile("hdfs://..." )
 ```
-1: Leitura de arquivo.<br /><br />
+1: Leitura de arquivo.<br />
 2: Feito split na linha(Quebrou a linha com o espaço), cada palavra se torna uma coleção de palavras<br />
 3: Feito um mapeamento de key-value, com a chave igual a palavra e valor 1<br />
 4: Valores são salvos por chave com o operador soma<br />
