@@ -51,7 +51,8 @@ object  Semantix {
   def urls5top(rdd: RDD[String],mes:String) = {
     var urls = rdd.map( line => line.split('"')(1).split(' ')(1))
     var counts = urls.map( endpoint => (endpoint, 1)).reduceByKey((a, b) => a + b)
-    var top = counts.sortBy( pair => pair._2).take(5)
+    var top = counts.sortBy( pair => -pair._2).take(5)
+    print("\nTop 5 404 erros\n")
     top.foreach(x => print(x + "\n"))
   }
 
