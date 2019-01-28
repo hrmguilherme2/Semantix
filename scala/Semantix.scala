@@ -15,8 +15,8 @@ object  Semantix {
     agosto.cache()
 
 
-    var julho_404_erro = julho.filter(line => line.contains("404")).cache()
-    var agosto_404_erro = agosto.filter(line => line.contains("404")).cache()
+    var julho_404_erro = julho.filter(line => line.contains("0" + '"' + " 404")).cache()
+    var agosto_404_erro = agosto.filter(line => line.contains("0" + '"' + " 404")).cache()
     // Hosts unicos
     hostsunicos(julho,"Julho")
     hostsunicos(agosto,"Agosto")
@@ -30,11 +30,16 @@ object  Semantix {
     pordia404(julho_404_erro,"Julho")
     pordia404(agosto_404_erro,"agosto")
     // Byte Counter
-    println(SizeEstimator.estimate(julho))
-    println(SizeEstimator.estimate(agosto))
+    bytecount(julho,"Julho")
+    bytecount(agosto,"Agosto")
     sc.stop()
   }
-
+  // Byte Count
+  def bytecount(rdd: RDD[String],mes:String): Unit = {
+    println("Total byte count " + mes )
+    println(SizeEstimator.estimate(rdd))
+  }
+  
   // Contagem de hosts
   def hostsunicos(rdd: RDD[String],mes:String) = {
     var dt = rdd.flatMap(line => line).distinct().count()
